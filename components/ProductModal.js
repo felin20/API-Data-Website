@@ -21,7 +21,7 @@ const ProductModal = ({ product, open, onClose }) => {
             alt={product.title}
             style={{ width: "100px", height: "100px" }}
           />
-          <p>Title: {product.title}</p>
+
           <p>Category: {product.category}</p>
           <p>Price: ${product.price}</p>
           <p>{product.description}</p>

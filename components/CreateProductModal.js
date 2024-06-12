@@ -85,10 +85,10 @@ const CreateProductModal = ({ open, onClose, onAddProduct }) => {
           <Select
             label="Category"
             options={[
-              { label: "Electronics", value: "Electronics" },
-              { label: "Clothing", value: "Clothing" },
-              { label: "Books", value: "Books" },
-              { label: "Beauty", value: "Beauty" },
+              { label: "electronics", value: "electronics" },
+              { label: "men's clothing", value: "men's clothing" },
+              { label: "women's clothing", value: "women's clothing" },
+              { label: "jewelery", value: "jewelery" },
             ]}
             value={formData.category}
             onChange={handleChange("category")}
