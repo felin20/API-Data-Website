@@ -1,0 +1,14 @@
+/* styles/custom.css */
+.custom-button {
+    background-color: green; /* Change to green */
+    color: white; /* Text color */
+    border: none; /* Remove default border */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .custom-button:hover {
+    background-color: darkgreen; /* Darker green on hover */
+  }
+  
