@@ -8,10 +8,12 @@ import {
   Popover,
   FormLayout,
   Select,
+  EmptyState,
 } from "@shopify/polaris";
 import { FilterMajor } from "@shopify/polaris-icons";
 import ProductModal from "../components/ProductModal";
 import CreateProductModal from "../components/CreateProductModal";
+import "../src/app/globals.css";
 
 const Home = ({ products = [] }) => {
   const [productList, setProductList] = useState(products);
@@ -175,21 +177,34 @@ const Home = ({ products = [] }) => {
           </FormLayout.Group>
         </FormLayout>
       </Card>
-      <div style={{ position: "relative", top: "-150px", left: "850px" }}>
-        <Button primary onClick={handleAddProductClick}>
+      <div style={{ position: "relative", top: "-150px", left: "830px" }}>
+        <Button id="custom-button" primary onClick={handleAddProductClick}>
           Add Product
         </Button>
       </div>
-      <div style={{ position: "relative", top: "-39px" }}>
-        <Card>
-          <DataTable
-            columnContentTypes={["text", "text", "text", "numeric"]}
-            headings={["Image", "Title", "Category", "Price"]}
-            rows={rows}
-          />
-        </Card>
-      </div>
-
+      
+      <Card>
+        
+          {filteredProducts.length > 0 ? (
+            <DataTable nam
+              columnContentTypes={["text", "text", "text", "numeric"]}
+              headings={["Image", "Title", "Category", "Price"]}
+              rows={rows}
+            />
+          ) : (
+            <EmptyState
+              heading="No products found"
+              image="https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png"
+            >
+              <p>
+                Try adjusting your search or filter to find what you're looking
+                for.
+              </p>
+            </EmptyState>
+          )}
+        
+      </Card>
+      
       <ProductModal
         product={selectedProduct}
         open={modalOpen}

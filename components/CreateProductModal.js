@@ -5,6 +5,7 @@ import {
   FormLayout,
   Select,
   Thumbnail,
+  InlineError,
 } from "@shopify/polaris";
 
 const CreateProductModal = ({ open, onClose, onAddProduct }) => {
@@ -15,13 +16,12 @@ const CreateProductModal = ({ open, onClose, onAddProduct }) => {
     image: "",
     rating: {
       rate: "",
-    },
-    rating: {
       count: "",
     },
-
     description: "",
   });
+
+  const [errors, setErrors] = useState({});
 
   const handleChange = (field) => (value) => {
     if (field.includes(".")) {
@@ -53,9 +53,26 @@ const CreateProductModal = ({ open, onClose, onAddProduct }) => {
     }
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.title) newErrors.title = "Title is required";
+    if (!formData.category) newErrors.category = "Category is required";
+    if (!formData.price) newErrors.price = "Price is required";
+    if (!formData.rating.rate) newErrors.ratingRate = "Rate is required";
+    if (!formData.rating.count) newErrors.ratingCount = "Count is required";
+    if (!formData.description) newErrors.description = "Description is required";
+    if (!formData.image) newErrors.image = "Image is required";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = () => {
-    onAddProduct(formData);
-    onClose(); // Close the modal after submission
+    if (validateForm()) {
+      onAddProduct(formData);
+      onClose(); // Close the modal after submission
+    }
   };
 
   return (
@@ -81,6 +98,8 @@ const CreateProductModal = ({ open, onClose, onAddProduct }) => {
             value={formData.title}
             onChange={handleChange("title")}
             placeholder="Enter product title"
+            requiredIndicator
+            error={errors.title}
           />
           <Select
             label="Category"
@@ -93,6 +112,8 @@ const CreateProductModal = ({ open, onClose, onAddProduct }) => {
             value={formData.category}
             onChange={handleChange("category")}
             placeholder="Select a category"
+            requiredIndicator
+            error={errors.category}
           />
           <TextField
             label="Price"
@@ -101,6 +122,8 @@ const CreateProductModal = ({ open, onClose, onAddProduct }) => {
             onChange={handleChange("price")}
             prefix="$"
             placeholder="Enter product price"
+            requiredIndicator
+            error={errors.price}
           />
           <TextField
             label="Rate"
@@ -108,6 +131,8 @@ const CreateProductModal = ({ open, onClose, onAddProduct }) => {
             value={formData.rating.rate}
             onChange={handleChange("rating.rate")}
             placeholder="Enter product rate"
+            requiredIndicator
+            error={errors.ratingRate}
           />
           <TextField
             label="Count"
@@ -115,6 +140,8 @@ const CreateProductModal = ({ open, onClose, onAddProduct }) => {
             value={formData.rating.count}
             onChange={handleChange("rating.count")}
             placeholder="Enter product count"
+            requiredIndicator
+            error={errors.ratingCount}
           />
           <TextField
             label="Description"
@@ -122,6 +149,8 @@ const CreateProductModal = ({ open, onClose, onAddProduct }) => {
             onChange={handleChange("description")}
             placeholder="Enter product description"
             multiline
+            requiredIndicator
+            error={errors.description}
           />
           <div style={{ display: "flex", flexDirection: "column" }}>
             <label htmlFor="fileInput">Image</label>
@@ -130,7 +159,9 @@ const CreateProductModal = ({ open, onClose, onAddProduct }) => {
               type="file"
               accept="image/*"
               onChange={handleFileChange}
+              required
             />
+            {errors.image && <InlineError message={errors.image} fieldID="fileInput" />}
             {formData.image && (
               <Thumbnail
                 source={formData.image}

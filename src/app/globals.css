@@ -31,3 +31,22 @@ body {
     text-wrap: balance;
   }
 }
+/* styles/globals.css */
+
+ html,
+body {
+  overflow-x: hidden;
+} 
+#custom-button {
+  background-color: #008060;
+  width: 119.97px;
+  height: 36px;
+  color: white;
+  font-weight: 600;
+}
+#custom-button:hover{
+  background-color: #228B22;
+}
+.Card{
+  overflow-x: auto;
+}
