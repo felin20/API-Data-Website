@@ -196,10 +196,8 @@ const Home = ({ products = [] }) => {
               heading="No products found"
               image="https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png"
             >
-              <p>
-                Try adjusting your search or filter to find what you're looking
-                for.
-              </p>
+              <p>Try adjusting your search or filter to find what you&apos;re looking for.</p>
+
             </EmptyState>
           )}
         
