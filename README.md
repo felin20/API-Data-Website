@@ -1,7 +1,7 @@
 https://project10-psi.vercel.app/       Deployed Link
 
 
-This is a website Created using data derived by API from fakestore.com/products
+This is a website Created using data derived by API from fakestoreapi.com/products
 
 New Products can be added to the list.
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
